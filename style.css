@@ -3758,4 +3758,301 @@ body.cursor-hover .cursor-ring {
 }
 
 }
+/* =========================================================
+   KS MANAGEMENT
+   MOBILE PREMIUM OPTIMIZATION
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    /* -----------------------------------------------------
+       GLOBAL
+    ----------------------------------------------------- */
+
+    html {
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+    }
+
+    body {
+        overflow-x: hidden;
+    }
+
+
+    /* -----------------------------------------------------
+       CONTAINER / SECTION
+    ----------------------------------------------------- */
+
+    section {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+
+    /* -----------------------------------------------------
+       HERO
+    ----------------------------------------------------- */
+
+    .hero {
+        min-height: 100svh;
+        padding: 110px 20px 70px;
+        overflow: hidden;
+    }
+
+    .hero-content {
+        width: 100%;
+        max-width: 100%;
+        transform: none !important;
+    }
+
+    .hero h1 {
+        font-size: clamp(42px, 13vw, 72px);
+        line-height: 0.95;
+        letter-spacing: -0.04em;
+    }
+
+    .hero p {
+        font-size: 15px;
+        line-height: 1.7;
+        max-width: 100%;
+    }
+
+
+    /* -----------------------------------------------------
+       SECTION TITLE
+    ----------------------------------------------------- */
+
+    .section-label {
+        font-size: 10px;
+        letter-spacing: 0.15em;
+    }
+
+    section h2 {
+        font-size: clamp(34px, 10vw, 52px);
+        line-height: 1;
+    }
+
+
+    /* -----------------------------------------------------
+       TALENT GRID
+    ----------------------------------------------------- */
+
+    .talent-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .talent-card {
+        width: 100%;
+        min-height: 0;
+    }
+
+
+    /* -----------------------------------------------------
+       PROJECT GRID
+    ----------------------------------------------------- */
+
+    .project-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .project-card {
+        width: 100%;
+        min-height: 0;
+    }
+
+
+    /* -----------------------------------------------------
+       CARD
+    ----------------------------------------------------- */
+
+    .talent-card,
+    .project-card {
+        transform: none !important;
+        perspective: none !important;
+        transform-style: flat;
+        will-change: auto;
+    }
+
+    .talent-card::after,
+    .project-card::after {
+        display: none;
+    }
+
+    .talent-image,
+    .project-image,
+    .talent-info,
+    .project-info {
+        transform: none !important;
+    }
+
+    .talent-card:hover,
+    .project-card:hover {
+        transform: none !important;
+    }
+
+
+    /* -----------------------------------------------------
+       CARD TEXT
+    ----------------------------------------------------- */
+
+    .talent-info,
+    .project-info {
+        padding: 18px;
+    }
+
+    .talent-info h3,
+    .project-info h3 {
+        font-size: 20px;
+        line-height: 1.2;
+    }
+
+    .talent-info p,
+    .project-info p {
+        font-size: 10px;
+        line-height: 1.5;
+    }
+
+    .card-more {
+        font-size: 10px;
+        margin-top: 12px;
+    }
+
+
+    /* -----------------------------------------------------
+       BUTTON
+    ----------------------------------------------------- */
+
+    .button {
+        min-height: 48px;
+        padding: 13px 20px;
+        font-size: 12px;
+
+        /* Matikan efek magnetic pada layar sentuh */
+        transform: none !important;
+    }
+
+
+    /* -----------------------------------------------------
+       NAVIGATION
+    ----------------------------------------------------- */
+
+    .nav-menu {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .nav-menu a {
+        padding: 14px 0;
+        font-size: 14px;
+    }
+
+
+    /* -----------------------------------------------------
+       MODAL
+    ----------------------------------------------------- */
+
+    .modal-overlay {
+        padding: 16px;
+    }
+
+    .modal {
+        width: 100%;
+        max-width: 100%;
+        max-height: 90svh;
+        overflow-y: auto;
+        border-radius: 18px;
+    }
+
+    .modal-content {
+        padding: 24px 20px;
+    }
+
+    .modal-title,
+    #modalTitle {
+        font-size: clamp(28px, 9vw, 44px);
+        line-height: 1;
+    }
+
+    .modal-description,
+    #modalDescription {
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .modal-close {
+        width: 42px;
+        height: 42px;
+    }
+
+
+    /* -----------------------------------------------------
+       BACK TO TOP
+    ----------------------------------------------------- */
+
+    .back-to-top {
+        width: 44px;
+        height: 44px;
+        right: 16px;
+        bottom: 16px;
+    }
+
+
+    /* -----------------------------------------------------
+       SCROLL PROGRESS
+    ----------------------------------------------------- */
+
+    .scroll-progress {
+        height: 3px;
+    }
+
+
+    /* -----------------------------------------------------
+       HIDE CUSTOM CURSOR
+    ----------------------------------------------------- */
+
+    .cursor-dot,
+    .cursor-ring {
+        display: none !important;
+    }
+
+
+    /* -----------------------------------------------------
+       IMAGES
+    ----------------------------------------------------- */
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+
+    /* -----------------------------------------------------
+       TOUCH TARGET
+    ----------------------------------------------------- */
+
+    a,
+    button,
+    .interactive-card {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .interactive-card {
+        cursor: pointer;
+    }
+
+
+    /* -----------------------------------------------------
+       SAFE AREA — HP DENGAN NOTCH
+    ----------------------------------------------------- */
+
+    .back-to-top {
+        bottom: max(
+            16px,
+            env(safe-area-inset-bottom)
+        );
+    }
+
+}
 /* =====================================================
