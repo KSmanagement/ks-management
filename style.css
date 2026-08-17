@@ -5137,4 +5137,12 @@ body.cursor-hover .cursor-ring {
     }
 
 }
+   /* TEST WELCOME SCREEN */
+.welcome-screen {
+    background: red !important;
+}
+
+.welcome-content h1 {
+    color: yellow !important;
+}
 /* =====================================================
