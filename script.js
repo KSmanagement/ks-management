@@ -1158,7 +1158,210 @@ if (!isTouchDevice) {
 
         }
     );
+/* =========================================================
+   PREMIUM MOBILE INTERACTION
+========================================================= */
 
+if (isTouchDevice) {
+
+    const touchElements =
+        document.querySelectorAll(
+            "a, button, .interactive-card, .team-card, .talent-card, .project-card, .service-item, .vm-card"
+        );
+
+
+    touchElements.forEach(
+        (element) => {
+
+            element.addEventListener(
+                "touchstart",
+                (event) => {
+
+                    const touch =
+                        event.touches[0];
+
+                    if (!touch) {
+                        return;
+                    }
+
+
+                    const ripple =
+                        document.createElement("span");
+
+                    ripple.className =
+                        "touch-ripple";
+
+
+                    ripple.style.left =
+                        `${touch.clientX}px`;
+
+                    ripple.style.top =
+                        `${touch.clientY}px`;
+
+
+                    document.body.appendChild(
+                        ripple
+                    );
+
+
+                    setTimeout(
+                        () => {
+
+                            ripple.remove();
+
+                        },
+                        600
+                    );
+
+                },
+                {
+                    passive: true
+                }
+            );
+
+        }
+    );
+
+
+    /* =========================================
+       MOBILE CARD FEEDBACK
+    ========================================= */
+
+    const mobileCards =
+        document.querySelectorAll(
+            ".interactive-card"
+        );
+
+
+    mobileCards.forEach(
+        (card) => {
+
+            card.addEventListener(
+                "touchstart",
+                () => {
+
+                    card.classList.add(
+                        "touch-active"
+                    );
+
+                },
+                {
+                    passive: true
+                }
+            );
+
+
+            card.addEventListener(
+                "touchend",
+                () => {
+
+                    setTimeout(
+                        () => {
+
+                            card.classList.remove(
+                                "touch-active"
+                            );
+
+                        },
+                        150
+                    );
+
+                },
+                {
+                    passive: true
+                }
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   MOBILE VIEWPORT OPTIMIZATION
+========================================================= */
+
+function updateMobileViewport() {
+
+    const viewportHeight =
+        window.visualViewport
+            ? window.visualViewport.height
+            : window.innerHeight;
+
+
+    document.documentElement.style.setProperty(
+        "--real-vh",
+        `${viewportHeight * 0.01}px`
+    );
+
+}
+
+
+updateMobileViewport();
+
+
+if (window.visualViewport) {
+
+    window.visualViewport.addEventListener(
+        "resize",
+        updateMobileViewport
+    );
+
+} else {
+
+    window.addEventListener(
+        "resize",
+        updateMobileViewport
+    );
+
+}
+
+
+/* =========================================================
+   MOBILE MENU AUTO CLOSE
+========================================================= */
+
+if (isTouchDevice && menuCheck) {
+
+    const mobileNavigation =
+        document.querySelector("nav");
+
+
+    document.addEventListener(
+        "touchstart",
+        (event) => {
+
+            if (
+                !menuCheck.checked ||
+                !mobileNavigation
+            ) {
+                return;
+            }
+
+
+            if (
+                !mobileNavigation.contains(
+                    event.target
+                )
+            ) {
+
+                menuCheck.checked =
+                    false;
+
+                document.body.classList.remove(
+                    "menu-open"
+                );
+
+            }
+
+        },
+        {
+            passive: true
+        }
+    );
+
+}
     /* =================================================
        END OF DOMCONTENTLOADED
     ================================================= */
