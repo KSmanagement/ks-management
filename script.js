@@ -1362,6 +1362,25 @@ if (isTouchDevice && menuCheck) {
     );
 
 }
+   /* =========================================================
+   PREMIUM LOADING SCREEN
+========================================================= */
+
+window.addEventListener("load", () => {
+
+    const siteLoader =
+        document.getElementById("siteLoader");
+
+    if (!siteLoader) {
+        return;
+    }
+
+    setTimeout(() => {
+
+        siteLoader.classList.add("loaded");
+
+    }, 2200);
+
     /* =================================================
        END OF DOMCONTENTLOADED
     ================================================= */
