@@ -5657,4 +5657,19 @@ body {
         letter-spacing: 2px;
     }
 }
+/* =========================================
+   WELCOME EXIT ANIMATION
+========================================= */
+
+.welcome-screen.hide {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.05);
+    pointer-events: none;
+
+    transition:
+        opacity 0.8s ease,
+        visibility 0.8s ease,
+        transform 0.8s ease;
+}
 /* =====================================================
