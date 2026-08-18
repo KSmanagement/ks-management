@@ -1388,64 +1388,47 @@ window.addEventListener("load", () => {
    WELCOME SCREEN ENTER BUTTON
 ========================================================= */
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
 
-    const welcomeScreen =
-        document.getElementById("welcomeScreen");
+    const welcomeScreen = document.getElementById("welcomeScreen");
+    const enterWebsite = document.getElementById("enterWebsite");
 
-    const enterWebsite =
-        document.getElementById("enterWebsite");
-
-
-    if (!welcomeScreen || !enterWebsite) {
-
-        console.error(
-            "Welcome screen atau tombol masuk tidak ditemukan"
-        );
-
+    if (!welcomeScreen) {
+        console.error("❌ #welcomeScreen tidak ditemukan.");
         return;
-
     }
 
+    if (!enterWebsite) {
+        console.error("❌ #enterWebsite tidak ditemukan.");
+        return;
+    }
 
-    // Kunci scroll ketika welcome muncul
+    console.log("✅ Welcome Screen berhasil ditemukan.");
+    console.log("✅ Tombol MASUK WEBSITE berhasil ditemukan.");
+
+    // Kunci scroll selama Welcome Screen tampil
     document.body.style.overflow = "hidden";
 
+    enterWebsite.addEventListener("click", () => {
 
-    enterWebsite.addEventListener(
-        "click",
-        function () {
+        console.log("🟢 Tombol MASUK WEBSITE diklik.");
 
+        // Efek tombol ditekan
+        enterWebsite.classList.add("clicked");
 
-            // efek tombol ditekan
-            enterWebsite.classList.add(
-                "clicked"
-            );
+        // Mulai animasi keluar
+        setTimeout(() => {
 
+            welcomeScreen.classList.add("hide");
 
-            setTimeout(
-                () => {
+            // Kembalikan scroll halaman
+            document.body.style.overflow = "";
 
-                    // animasi keluar
-                    welcomeScreen.classList.add(
-                        "hide"
-                    );
+            console.log("✅ Welcome Screen sedang keluar.");
 
+        }, 300);
 
-                    // aktifkan scroll website
-                    document.body.style.overflow =
-                        "auto";
-
-
-                },
-                300
-            );
-
-
-        }
-    );
-
-
+    });
 });
     /* =================================================
        END OF DOMCONTENTLOADED
