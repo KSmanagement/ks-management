@@ -1371,40 +1371,82 @@ window.addEventListener("load", () => {
     const siteLoader =
         document.getElementById("siteLoader");
 
-    if (!siteLoader) {
-        return;
+    if (siteLoader) {
+
+        setTimeout(() => {
+
+            siteLoader.classList.add("loaded");
+
+        }, 2200);
+
     }
 
-    setTimeout(() => {
+});
 
-        siteLoader.classList.add("loaded");
 
-    }, 2200);
-   document.addEventListener("DOMContentLoaded", function () {
+/* =========================================================
+   WELCOME SCREEN ENTER BUTTON
+========================================================= */
 
-    const welcomeScreen = document.getElementById("welcomeScreen");
-    const enterWebsite = document.getElementById("enterWebsite");
+document.addEventListener("DOMContentLoaded", function () {
+
+    const welcomeScreen =
+        document.getElementById("welcomeScreen");
+
+    const enterWebsite =
+        document.getElementById("enterWebsite");
+
 
     if (!welcomeScreen || !enterWebsite) {
-        console.error("Welcome screen atau tombol masuk tidak ditemukan.");
+
+        console.error(
+            "Welcome screen atau tombol masuk tidak ditemukan"
+        );
+
         return;
+
     }
 
-    enterWebsite.addEventListener("click", function () {
 
-        // Efek tombol ditekan
-        enterWebsite.style.transform = "scale(0.95)";
+    // Kunci scroll ketika welcome muncul
+    document.body.style.overflow = "hidden";
 
-        // Hilangkan halaman welcome
-        setTimeout(function () {
-            welcomeScreen.classList.add("hide");
-        }, 150);
 
-        // Kembalikan scroll website
-        setTimeout(function () {
-            document.body.style.overflow = "auto";
-        }, 800);
+    enterWebsite.addEventListener(
+        "click",
+        function () {
 
+
+            // efek tombol ditekan
+            enterWebsite.classList.add(
+                "clicked"
+            );
+
+
+            setTimeout(
+                () => {
+
+                    // animasi keluar
+                    welcomeScreen.classList.add(
+                        "hide"
+                    );
+
+
+                    // aktifkan scroll website
+                    document.body.style.overflow =
+                        "auto";
+
+
+                },
+                300
+            );
+
+
+        }
+    );
+
+
+});
     /* =================================================
        END OF DOMCONTENTLOADED
     ================================================= */
