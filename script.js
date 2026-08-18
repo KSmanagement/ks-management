@@ -1405,10 +1405,6 @@ window.addEventListener("load", () => {
             document.body.style.overflow = "auto";
         }, 800);
 
-    });
-
-});
-
     /* =================================================
        END OF DOMCONTENTLOADED
     ================================================= */
