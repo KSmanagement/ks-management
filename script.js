@@ -1380,6 +1380,34 @@ window.addEventListener("load", () => {
         siteLoader.classList.add("loaded");
 
     }, 2200);
+   document.addEventListener("DOMContentLoaded", function () {
+
+    const welcomeScreen = document.getElementById("welcomeScreen");
+    const enterWebsite = document.getElementById("enterWebsite");
+
+    if (!welcomeScreen || !enterWebsite) {
+        console.error("Welcome screen atau tombol masuk tidak ditemukan.");
+        return;
+    }
+
+    enterWebsite.addEventListener("click", function () {
+
+        // Efek tombol ditekan
+        enterWebsite.style.transform = "scale(0.95)";
+
+        // Hilangkan halaman welcome
+        setTimeout(function () {
+            welcomeScreen.classList.add("hide");
+        }, 150);
+
+        // Kembalikan scroll website
+        setTimeout(function () {
+            document.body.style.overflow = "auto";
+        }, 800);
+
+    });
+
+});
 
     /* =================================================
        END OF DOMCONTENTLOADED
