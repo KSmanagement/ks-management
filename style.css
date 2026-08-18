@@ -5672,4 +5672,47 @@ body {
         visibility 0.8s ease,
         transform 0.8s ease;
 }
+/* =========================================
+   WELCOME SCREEN EXIT ANIMATION
+========================================= */
+
+#welcomeScreen {
+
+    position: fixed;
+    inset: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    z-index: 99999;
+
+    transition:
+        opacity 0.8s ease,
+        visibility 0.8s ease,
+        transform 0.8s ease;
+
+}
+
+
+#welcomeScreen.hide {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform:
+        scale(1.08);
+
+}
+
+
+
+/* BUTTON CLICK EFFECT */
+
+.welcome-button.clicked {
+
+    transform:
+        scale(0.92);
+
+}
 /* =====================================================
