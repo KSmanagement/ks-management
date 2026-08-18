@@ -5225,4 +5225,14 @@ body.cursor-hover .cursor-ring {
     }
 
 }
+/* TEST WELCOME BACKGROUND */
+
+#welcomeScreen {
+    background: linear-gradient(
+        135deg,
+        #001a4d,
+        #004cff,
+        #00d9ff
+    ) !important;
+}
 /* =====================================================
