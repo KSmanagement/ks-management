@@ -5715,4 +5715,791 @@ body {
         scale(0.92);
 
 }
+/* =========================================================
+   MUSIC PORTFOLIO SCREEN
+========================================================= */
+
+#musicPortfolio {
+    position: fixed;
+
+    inset: 0;
+
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+
+    z-index: 99990;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(0, 110, 255, 0.18),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(0, 210, 255, 0.12),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #02030a,
+            #061329,
+            #02030a
+        );
+
+    color: #ffffff;
+
+    opacity: 1;
+    visibility: visible;
+
+    transform: scale(1);
+
+    transition:
+        opacity .8s ease,
+        visibility .8s ease,
+        transform .8s ease;
+
+    isolation: isolate;
+}
+
+
+/* =========================================
+   BACKGROUND GLOW
+========================================= */
+
+.music-bg-glow {
+    position: absolute;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    filter: blur(40px);
+
+    z-index: -2;
+}
+
+
+.music-glow-one {
+    width: 550px;
+    height: 550px;
+
+    top: -250px;
+    left: -180px;
+
+    background:
+        rgba(35, 137, 232, 0.16);
+
+    animation:
+        musicGlowOne
+        12s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+
+.music-glow-two {
+    width: 500px;
+    height: 500px;
+
+    right: -180px;
+    bottom: -220px;
+
+    background:
+        rgba(0, 210, 255, 0.12);
+
+    animation:
+        musicGlowTwo
+        15s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+
+/* =========================================
+   DIGITAL GRID
+========================================= */
+
+.music-grid {
+    position: absolute;
+
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,0.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.025) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        70px 70px;
+
+    mask-image:
+        radial-gradient(
+            ellipse at center,
+            black,
+            transparent 80%
+        );
+
+    pointer-events: none;
+
+    z-index: -1;
+
+    animation:
+        musicGridMove
+        20s
+        linear
+        infinite;
+}
+
+
+/* =========================================
+   INNER
+========================================= */
+
+.music-portfolio-inner {
+    position: relative;
+
+    width: min(900px, 90%);
+
+    max-height: 92vh;
+
+    overflow-y: auto;
+
+    padding: 30px 0;
+
+    text-align: center;
+
+    scrollbar-width: none;
+}
+
+
+.music-portfolio-inner::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.music-header {
+    margin-bottom: 35px;
+
+    animation:
+        musicHeaderReveal
+        1s
+        cubic-bezier(.16,1,.3,1)
+        both;
+}
+
+
+.music-eyebrow {
+    margin-bottom: 18px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: .5em;
+
+    color:
+        rgba(255,255,255,.5);
+
+    text-transform: uppercase;
+}
+
+
+.music-header h2 {
+    margin: 0;
+
+    font-size:
+        clamp(
+            45px,
+            8vw,
+            90px
+        );
+
+    line-height: .85;
+
+    font-weight: 900;
+
+    letter-spacing: -.06em;
+
+    color: #ffffff;
+}
+
+
+.music-header h2 span {
+    display: block;
+
+    color: #2389e8;
+
+    text-shadow:
+        0 0 30px
+        rgba(35,137,232,.25);
+}
+
+
+.music-header p {
+    margin: 25px 0 0;
+
+    font-size: 10px;
+
+    letter-spacing: .35em;
+
+    color:
+        rgba(255,255,255,.45);
+}
+
+
+/* =========================================
+   PLAYLIST
+========================================= */
+
+.music-playlist {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    text-align: left;
+}
+
+
+/* =========================================
+   TRACK
+========================================= */
+
+.music-track {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    min-height: 72px;
+
+    padding:
+        0 20px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.07);
+
+    background:
+        rgba(255,255,255,.025);
+
+    backdrop-filter:
+        blur(12px);
+
+    transition:
+        transform .35s ease,
+        border-color .35s ease,
+        background .35s ease,
+        box-shadow .35s ease;
+
+    cursor: pointer;
+
+    overflow: hidden;
+}
+
+
+.music-track::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(35,137,232,.12),
+            transparent 60%
+        );
+
+    opacity: 0;
+
+    transition:
+        opacity .35s ease;
+}
+
+
+.music-track:hover {
+    transform:
+        translateX(8px);
+
+    border-color:
+        rgba(35,137,232,.35);
+
+    background:
+        rgba(35,137,232,.06);
+
+    box-shadow:
+        0 10px 35px
+        rgba(0,0,0,.2);
+}
+
+
+.music-track:hover::before {
+    opacity: 1;
+}
+
+
+.music-track.active {
+    border-color:
+        rgba(35,137,232,.45);
+
+    background:
+        rgba(35,137,232,.08);
+
+    box-shadow:
+        inset 3px 0 0
+        #2389e8;
+}
+
+
+/* =========================================
+   NUMBER
+========================================= */
+
+.track-number {
+    position: relative;
+
+    width: 55px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: .15em;
+
+    color:
+        rgba(35,137,232,.8);
+}
+
+
+/* =========================================
+   TRACK INFO
+========================================= */
+
+.track-info {
+    position: relative;
+
+    flex: 1;
+
+    padding: 15px 0;
+}
+
+
+.track-info h3 {
+    margin: 0 0 6px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    letter-spacing: .08em;
+}
+
+
+.track-info span {
+    font-size: 9px;
+
+    letter-spacing: .2em;
+
+    color:
+        rgba(255,255,255,.35);
+}
+
+
+/* =========================================
+   PLAY BUTTON
+========================================= */
+
+.track-play {
+    position: relative;
+
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    border:
+        1px solid
+        rgba(35,137,232,.4);
+
+    border-radius: 50%;
+
+    background:
+        rgba(35,137,232,.08);
+
+    color:
+        #2389e8;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    transition:
+        transform .3s ease,
+        background .3s ease,
+        color .3s ease,
+        box-shadow .3s ease;
+}
+
+
+.track-play:hover {
+    transform:
+        scale(1.1);
+
+    background:
+        #2389e8;
+
+    color:
+        #ffffff;
+
+    box-shadow:
+        0 0 25px
+        rgba(35,137,232,.35);
+}
+
+
+/* =========================================
+   NOW PLAYING
+========================================= */
+
+.music-now-playing {
+    margin-top: 30px;
+
+    padding:
+        20px 25px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.07);
+
+    background:
+        rgba(255,255,255,.025);
+
+    backdrop-filter:
+        blur(15px);
+}
+
+
+.now-playing-label {
+    margin-bottom: 8px;
+
+    font-size: 8px;
+
+    letter-spacing: .35em;
+
+    color:
+        rgba(35,137,232,.8);
+}
+
+
+.now-playing-title {
+    margin-bottom: 18px;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    letter-spacing: .08em;
+}
+
+
+/* =========================================
+   FAKE PROGRESS
+========================================= */
+
+.fake-progress {
+    position: relative;
+
+    width: 100%;
+
+    height: 2px;
+
+    background:
+        rgba(255,255,255,.1);
+
+    overflow: hidden;
+}
+
+
+.fake-progress span {
+    display: block;
+
+    width: 25%;
+
+    height: 100%;
+
+    background:
+        #2389e8;
+
+    box-shadow:
+        0 0 12px
+        rgba(35,137,232,.8);
+}
+
+
+.music-time {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-top: 8px;
+
+    font-size: 8px;
+
+    color:
+        rgba(255,255,255,.35);
+
+    letter-spacing: .1em;
+}
+
+
+/* =========================================
+   ENTER WEBSITE
+========================================= */
+
+.music-enter-button {
+    position: relative;
+
+    margin-top: 25px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 15px;
+
+    padding:
+        15px 28px;
+
+    border:
+        1px solid
+        rgba(35,137,232,.5);
+
+    background:
+        rgba(35,137,232,.06);
+
+    color:
+        #ffffff;
+
+    font-family:
+        inherit;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: .2em;
+
+    cursor: pointer;
+
+    transition:
+        transform .3s ease,
+        background .3s ease,
+        box-shadow .3s ease;
+}
+
+
+.music-enter-button span {
+    font-size: 18px;
+
+    transition:
+        transform .3s ease;
+}
+
+
+.music-enter-button:hover {
+    transform:
+        translateY(-4px);
+
+    background:
+        rgba(35,137,232,.15);
+
+    box-shadow:
+        0 15px 40px
+        rgba(35,137,232,.15);
+}
+
+
+.music-enter-button:hover span {
+    transform:
+        translateX(7px);
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes musicHeaderReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+@keyframes musicGlowOne {
+
+    from {
+        transform:
+            translate3d(0,0,0)
+            scale(1);
+    }
+
+    to {
+        transform:
+            translate3d(180px,120px,0)
+            scale(1.2);
+    }
+
+}
+
+
+@keyframes musicGlowTwo {
+
+    from {
+        transform:
+            translate3d(0,0,0)
+            scale(1);
+    }
+
+    to {
+        transform:
+            translate3d(-150px,-100px,0)
+            scale(1.2);
+    }
+
+}
+
+
+@keyframes musicGridMove {
+
+    from {
+        background-position:
+            0 0;
+    }
+
+    to {
+        background-position:
+            70px 70px;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .music-portfolio-inner {
+        width: 90%;
+
+        padding:
+            20px 0;
+    }
+
+
+    .music-header {
+        margin-bottom: 25px;
+    }
+
+
+    .music-eyebrow {
+        font-size: 8px;
+
+        letter-spacing: .35em;
+    }
+
+
+    .music-header h2 {
+        font-size:
+            clamp(
+                42px,
+                13vw,
+                65px
+            );
+    }
+
+
+    .music-header p {
+        font-size: 8px;
+
+        letter-spacing: .2em;
+    }
+
+
+    .music-track {
+        min-height: 64px;
+
+        padding:
+            0 14px;
+    }
+
+
+    .track-number {
+        width: 40px;
+
+        font-size: 10px;
+    }
+
+
+    .track-info h3 {
+        font-size: 11px;
+    }
+
+
+    .track-info span {
+        font-size: 7px;
+    }
+
+
+    .track-play {
+        width: 36px;
+        height: 36px;
+    }
+
+
+    .music-now-playing {
+        padding:
+            16px 18px;
+    }
+
+}
 /* =====================================================
