@@ -5716,12 +5716,12 @@ body {
 
 }
 /* =========================================================
-   MUSIC PORTFOLIO SCREEN
+   KS MANAGEMENT
+   CINEMATIC MUSIC PORTFOLIO
 ========================================================= */
 
 #musicPortfolio {
     position: fixed;
-
     inset: 0;
 
     width: 100vw;
@@ -5738,151 +5738,145 @@ body {
 
     background:
         radial-gradient(
-            circle at 20% 20%,
-            rgba(0, 110, 255, 0.18),
-            transparent 35%
+            circle at 15% 20%,
+            rgba(35,137,232,.18),
+            transparent 30%
         ),
         radial-gradient(
-            circle at 80% 80%,
-            rgba(0, 210, 255, 0.12),
-            transparent 35%
+            circle at 85% 80%,
+            rgba(0,210,255,.12),
+            transparent 32%
         ),
         linear-gradient(
             135deg,
-            #02030a,
-            #061329,
-            #02030a
+            #01030a 0%,
+            #041022 45%,
+            #01040d 100%
         );
 
-    color: #ffffff;
+    color: #fff;
 
     opacity: 1;
     visibility: visible;
 
-    transform: scale(1);
-
     transition:
-        opacity .8s ease,
-        visibility .8s ease,
-        transform .8s ease;
+        opacity .9s ease,
+        visibility .9s ease,
+        transform .9s cubic-bezier(.16,1,.3,1);
 
     isolation: isolate;
 }
 
 
-/* =========================================
-   BACKGROUND GLOW
-========================================= */
+/* =========================================================
+   ATMOSPHERIC LIGHT
+========================================================= */
 
-.music-bg-glow {
+#musicPortfolio::before {
+    content: "";
+
     position: absolute;
+    inset: -30%;
 
-    border-radius: 50%;
+    background:
+        radial-gradient(
+            circle at 25% 35%,
+            rgba(35,137,232,.12),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 75% 65%,
+            rgba(0,180,255,.08),
+            transparent 25%
+        );
+
+    filter: blur(35px);
+
+    animation:
+        musicAtmosphere
+        14s
+        ease-in-out
+        infinite alternate;
 
     pointer-events: none;
 
-    filter: blur(40px);
+    z-index: -3;
+}
+
+
+/* =========================================================
+   MOVING GRID
+========================================================= */
+
+.music-grid {
+    position: absolute;
+    inset: -100px;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 80px 80px;
+
+    transform:
+        perspective(600px)
+        rotateX(58deg)
+        translateY(100px)
+        scale(1.4);
+
+    transform-origin:
+        center bottom;
+
+    mask-image:
+        linear-gradient(
+            to top,
+            black,
+            transparent 85%
+        );
+
+    animation:
+        musicGridMove
+        18s
+        linear
+        infinite;
+
+    pointer-events: none;
 
     z-index: -2;
 }
 
 
-.music-glow-one {
-    width: 550px;
-    height: 550px;
-
-    top: -250px;
-    left: -180px;
-
-    background:
-        rgba(35, 137, 232, 0.16);
-
-    animation:
-        musicGlowOne
-        12s
-        ease-in-out
-        infinite
-        alternate;
-}
-
-
-.music-glow-two {
-    width: 500px;
-    height: 500px;
-
-    right: -180px;
-    bottom: -220px;
-
-    background:
-        rgba(0, 210, 255, 0.12);
-
-    animation:
-        musicGlowTwo
-        15s
-        ease-in-out
-        infinite
-        alternate;
-}
-
-
-/* =========================================
-   DIGITAL GRID
-========================================= */
-
-.music-grid {
-    position: absolute;
-
-    inset: 0;
-
-    background-image:
-        linear-gradient(
-            rgba(255,255,255,0.025) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            90deg,
-            rgba(255,255,255,0.025) 1px,
-            transparent 1px
-        );
-
-    background-size:
-        70px 70px;
-
-    mask-image:
-        radial-gradient(
-            ellipse at center,
-            black,
-            transparent 80%
-        );
-
-    pointer-events: none;
-
-    z-index: -1;
-
-    animation:
-        musicGridMove
-        20s
-        linear
-        infinite;
-}
-
-
-/* =========================================
-   INNER
-========================================= */
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
 
 .music-portfolio-inner {
     position: relative;
 
-    width: min(900px, 90%);
+    width: min(1180px, 92%);
 
-    max-height: 92vh;
+    height: min(760px, 88vh);
 
-    overflow-y: auto;
+    display: grid;
 
-    padding: 30px 0;
+    grid-template-columns:
+        42% 58%;
 
-    text-align: center;
+    grid-template-rows:
+        auto 1fr auto;
+
+    column-gap: 70px;
+
+    padding: 20px 0;
+
+    overflow: visible;
 
     scrollbar-width: none;
 }
@@ -5893,11 +5887,19 @@ body {
 }
 
 
-/* =========================================
+/* =========================================================
    HEADER
-========================================= */
+========================================================= */
 
 .music-header {
+    grid-column: 1 / -1;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
     margin-bottom: 35px;
 
     animation:
@@ -5909,16 +5911,14 @@ body {
 
 
 .music-eyebrow {
-    margin-bottom: 18px;
-
-    font-size: 11px;
+    font-size: 10px;
 
     font-weight: 700;
 
-    letter-spacing: .5em;
+    letter-spacing: .45em;
 
     color:
-        rgba(255,255,255,.5);
+        rgba(255,255,255,.45);
 
     text-transform: uppercase;
 }
@@ -5929,9 +5929,9 @@ body {
 
     font-size:
         clamp(
-            45px,
-            8vw,
-            90px
+            32px,
+            4vw,
+            55px
         );
 
     line-height: .85;
@@ -5940,51 +5940,162 @@ body {
 
     letter-spacing: -.06em;
 
-    color: #ffffff;
+    text-align: right;
 }
 
 
 .music-header h2 span {
-    display: block;
-
     color: #2389e8;
 
     text-shadow:
         0 0 30px
-        rgba(35,137,232,.25);
+        rgba(35,137,232,.3);
 }
 
 
 .music-header p {
-    margin: 25px 0 0;
-
-    font-size: 10px;
-
-    letter-spacing: .35em;
-
-    color:
-        rgba(255,255,255,.45);
+    display: none;
 }
 
 
-/* =========================================
+/* =========================================================
+   LEFT — ARTWORK
+========================================================= */
+
+.music-portfolio-inner::before {
+    content: "KS";
+
+    grid-column: 1;
+
+    grid-row: 2;
+
+    align-self: center;
+
+    justify-self: center;
+
+    width: min(350px, 30vw);
+
+    aspect-ratio: 1;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border:
+        1px solid
+        rgba(35,137,232,.3);
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            rgba(35,137,232,.28),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 70% 75%,
+            rgba(0,210,255,.12),
+            transparent 40%
+        ),
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.06),
+            rgba(255,255,255,.015)
+        );
+
+    box-shadow:
+        0 40px 100px
+        rgba(0,0,0,.5),
+
+        0 0 80px
+        rgba(35,137,232,.08),
+
+        inset 0 0 80px
+        rgba(35,137,232,.05);
+
+    color:
+        rgba(255,255,255,.92);
+
+    font-size:
+        clamp(
+            80px,
+            10vw,
+            150px
+        );
+
+    font-weight: 900;
+
+    letter-spacing: -.1em;
+
+    animation:
+        artworkFloat
+        6s
+        ease-in-out
+        infinite;
+
+    z-index: 1;
+}
+
+
+/* Artwork border */
+
+.music-portfolio-inner::after {
+    content: "";
+
+    position: absolute;
+
+    left: 4%;
+
+    top: 35%;
+
+    width: 36%;
+
+    aspect-ratio: 1;
+
+    border:
+        1px solid
+        rgba(35,137,232,.12);
+
+    transform:
+        rotate(8deg);
+
+    pointer-events: none;
+
+    animation:
+        artworkFrame
+        12s
+        linear
+        infinite;
+
+    z-index: 0;
+}
+
+
+/* =========================================================
    PLAYLIST
-========================================= */
+========================================================= */
 
 .music-playlist {
+    grid-column: 2;
+
+    grid-row: 2;
+
+    align-self: center;
+
     display: flex;
 
     flex-direction: column;
 
-    gap: 8px;
+    gap: 7px;
 
-    text-align: left;
+    width: 100%;
 }
 
 
-/* =========================================
+/* =========================================================
    TRACK
-========================================= */
+========================================================= */
 
 .music-track {
     position: relative;
@@ -5996,27 +6107,27 @@ body {
     min-height: 72px;
 
     padding:
-        0 20px;
+        0 18px;
 
     border:
         1px solid
-        rgba(255,255,255,.07);
+        rgba(255,255,255,.06);
 
     background:
         rgba(255,255,255,.025);
 
     backdrop-filter:
-        blur(12px);
+        blur(18px);
 
-    transition:
-        transform .35s ease,
-        border-color .35s ease,
-        background .35s ease,
-        box-shadow .35s ease;
+    overflow: hidden;
 
     cursor: pointer;
 
-    overflow: hidden;
+    transition:
+        transform .4s cubic-bezier(.16,1,.3,1),
+        border-color .4s ease,
+        background .4s ease,
+        box-shadow .4s ease;
 }
 
 
@@ -6030,14 +6141,14 @@ body {
     background:
         linear-gradient(
             90deg,
-            rgba(35,137,232,.12),
-            transparent 60%
+            rgba(35,137,232,.16),
+            transparent 70%
         );
 
     opacity: 0;
 
     transition:
-        opacity .35s ease;
+        opacity .4s ease;
 }
 
 
@@ -6046,14 +6157,14 @@ body {
         translateX(8px);
 
     border-color:
-        rgba(35,137,232,.35);
+        rgba(35,137,232,.3);
 
     background:
-        rgba(35,137,232,.06);
+        rgba(35,137,232,.055);
 
     box-shadow:
-        0 10px 35px
-        rgba(0,0,0,.2);
+        0 15px 40px
+        rgba(0,0,0,.25);
 }
 
 
@@ -6067,51 +6178,59 @@ body {
         rgba(35,137,232,.45);
 
     background:
-        rgba(35,137,232,.08);
+        linear-gradient(
+            90deg,
+            rgba(35,137,232,.1),
+            rgba(255,255,255,.025)
+        );
 
     box-shadow:
         inset 3px 0 0
-        #2389e8;
+        #2389e8,
+
+        0 15px 45px
+        rgba(0,0,0,.2);
 }
 
 
-/* =========================================
+/* =========================================================
    NUMBER
-========================================= */
+========================================================= */
 
 .track-number {
     position: relative;
 
-    width: 55px;
+    width: 60px;
 
-    font-size: 12px;
+    font-size: 11px;
 
     font-weight: 700;
 
-    letter-spacing: .15em;
+    letter-spacing: .18em;
 
     color:
-        rgba(35,137,232,.8);
+        rgba(35,137,232,.75);
 }
 
 
-/* =========================================
+/* =========================================================
    TRACK INFO
-========================================= */
+========================================================= */
 
 .track-info {
     position: relative;
 
     flex: 1;
 
-    padding: 15px 0;
+    padding:
+        15px 0;
 }
 
 
 .track-info h3 {
     margin: 0 0 6px;
 
-    font-size: 14px;
+    font-size: 13px;
 
     font-weight: 700;
 
@@ -6120,18 +6239,18 @@ body {
 
 
 .track-info span {
-    font-size: 9px;
+    font-size: 8px;
 
-    letter-spacing: .2em;
+    letter-spacing: .22em;
 
     color:
-        rgba(255,255,255,.35);
+        rgba(255,255,255,.3);
 }
 
 
-/* =========================================
+/* =========================================================
    PLAY BUTTON
-========================================= */
+========================================================= */
 
 .track-play {
     position: relative;
@@ -6143,72 +6262,95 @@ body {
 
     border:
         1px solid
-        rgba(35,137,232,.4);
+        rgba(35,137,232,.45);
 
     border-radius: 50%;
 
     background:
-        rgba(35,137,232,.08);
+        rgba(35,137,232,.06);
 
     color:
         #2389e8;
 
-    font-size: 12px;
+    font-size: 11px;
 
     cursor: pointer;
 
     transition:
-        transform .3s ease,
-        background .3s ease,
-        color .3s ease,
-        box-shadow .3s ease;
+        transform .35s ease,
+        background .35s ease,
+        color .35s ease,
+        box-shadow .35s ease;
 }
 
 
 .track-play:hover {
     transform:
-        scale(1.1);
+        scale(1.12);
 
     background:
         #2389e8;
 
     color:
-        #ffffff;
+        #fff;
 
     box-shadow:
-        0 0 25px
+        0 0 30px
         rgba(35,137,232,.35);
 }
 
 
-/* =========================================
+/* =========================================================
    NOW PLAYING
-========================================= */
+========================================================= */
 
 .music-now-playing {
-    margin-top: 30px;
+    grid-column: 1 / -1;
+
+    grid-row: 3;
+
+    display: grid;
+
+    grid-template-columns:
+        190px 1fr;
+
+    grid-template-rows:
+        auto auto;
+
+    column-gap: 35px;
+
+    align-items: center;
 
     padding:
-        20px 25px;
+        18px 22px;
 
     border:
         1px solid
-        rgba(255,255,255,.07);
+        rgba(255,255,255,.06);
 
     background:
         rgba(255,255,255,.025);
 
     backdrop-filter:
-        blur(15px);
+        blur(20px);
+
+    animation:
+        playerReveal
+        1s
+        ease
+        .4s
+        both;
 }
 
 
 .now-playing-label {
-    margin-bottom: 8px;
+    grid-column: 1;
+
+    grid-row: 1;
 
     font-size: 8px;
 
-    letter-spacing: .35em;
+    letter-spacing: .3em;
 
     color:
         rgba(35,137,232,.8);
@@ -6216,9 +6358,13 @@ body {
 
 
 .now-playing-title {
-    margin-bottom: 18px;
+    grid-column: 1;
 
-    font-size: 15px;
+    grid-row: 2;
+
+    margin-top: 6px;
+
+    font-size: 12px;
 
     font-weight: 700;
 
@@ -6226,11 +6372,15 @@ body {
 }
 
 
-/* =========================================
-   FAKE PROGRESS
-========================================= */
+/* =========================================================
+   PROGRESS
+========================================================= */
 
 .fake-progress {
+    grid-column: 2;
+
+    grid-row: 1;
+
     position: relative;
 
     width: 100%;
@@ -6239,8 +6389,6 @@ body {
 
     background:
         rgba(255,255,255,.1);
-
-    overflow: hidden;
 }
 
 
@@ -6261,6 +6409,10 @@ body {
 
 
 .music-time {
+    grid-column: 2;
+
+    grid-row: 2;
+
     display: flex;
 
     justify-content: space-between;
@@ -6270,45 +6422,44 @@ body {
     font-size: 8px;
 
     color:
-        rgba(255,255,255,.35);
-
-    letter-spacing: .1em;
+        rgba(255,255,255,.3);
 }
 
 
-/* =========================================
-   ENTER WEBSITE
-========================================= */
+/* =========================================================
+   ENTER BUTTON
+========================================================= */
 
 .music-enter-button {
-    position: relative;
+    position: absolute;
 
-    margin-top: 25px;
+    right: 0;
+
+    bottom: -65px;
 
     display: inline-flex;
 
     align-items: center;
-    justify-content: center;
 
     gap: 15px;
 
     padding:
-        15px 28px;
+        14px 25px;
 
     border:
         1px solid
-        rgba(35,137,232,.5);
+        rgba(35,137,232,.45);
 
     background:
-        rgba(35,137,232,.06);
+        rgba(35,137,232,.05);
 
     color:
-        #ffffff;
+        #fff;
 
     font-family:
         inherit;
 
-    font-size: 10px;
+    font-size: 9px;
 
     font-weight: 700;
 
@@ -6317,17 +6468,17 @@ body {
     cursor: pointer;
 
     transition:
-        transform .3s ease,
-        background .3s ease,
-        box-shadow .3s ease;
+        transform .35s ease,
+        background .35s ease,
+        box-shadow .35s ease;
 }
 
 
 .music-enter-button span {
-    font-size: 18px;
+    font-size: 17px;
 
     transition:
-        transform .3s ease;
+        transform .35s ease;
 }
 
 
@@ -6336,7 +6487,7 @@ body {
         translateY(-4px);
 
     background:
-        rgba(35,137,232,.15);
+        rgba(35,137,232,.14);
 
     box-shadow:
         0 15px 40px
@@ -6350,60 +6501,23 @@ body {
 }
 
 
-/* =========================================
+/* =========================================================
    ANIMATIONS
-========================================= */
+========================================================= */
 
-@keyframes musicHeaderReveal {
+@keyframes musicAtmosphere {
 
-    from {
-        opacity: 0;
-
+    0% {
         transform:
-            translateY(35px);
-    }
-
-    to {
-        opacity: 1;
-
-        transform:
-            translateY(0);
-    }
-
-}
-
-
-@keyframes musicGlowOne {
-
-    from {
-        transform:
-            translate3d(0,0,0)
+            translate3d(-3%,-2%,0)
             scale(1);
     }
 
-    to {
+    100% {
         transform:
-            translate3d(180px,120px,0)
-            scale(1.2);
+            translate3d(4%,5%,0)
+            scale(1.1);
     }
-
-}
-
-
-@keyframes musicGlowTwo {
-
-    from {
-        transform:
-            translate3d(0,0,0)
-            scale(1);
-    }
-
-    to {
-        transform:
-            translate3d(-150px,-100px,0)
-            scale(1.2);
-    }
-
 }
 
 
@@ -6416,56 +6530,174 @@ body {
 
     to {
         background-position:
-            70px 70px;
+            80px 80px;
     }
-
 }
 
 
-/* =========================================
-   MOBILE
-========================================= */
+@keyframes musicHeaderReveal {
 
-@media (max-width: 600px) {
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(-25px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+@keyframes artworkFloat {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            rotate(0deg);
+    }
+
+    50% {
+        transform:
+            translateY(-10px)
+            rotate(.5deg);
+    }
+}
+
+
+@keyframes artworkFrame {
+
+    from {
+        transform:
+            rotate(8deg)
+            scale(1);
+    }
+
+    to {
+        transform:
+            rotate(368deg)
+            scale(1.04);
+    }
+}
+
+
+@keyframes playerReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    #musicPortfolio {
+        overflow-y: auto;
+    }
+
 
     .music-portfolio-inner {
+
         width: 90%;
 
+        height: auto;
+
+        min-height: 90vh;
+
+        display: flex;
+
+        flex-direction: column;
+
         padding:
-            20px 0;
+            30px 0
+            80px;
     }
 
 
     .music-header {
+
+        display: block;
+
+        text-align: center;
+
         margin-bottom: 25px;
     }
 
 
     .music-eyebrow {
-        font-size: 8px;
+        margin-bottom: 15px;
 
-        letter-spacing: .35em;
+        font-size: 8px;
     }
 
 
     .music-header h2 {
+
         font-size:
             clamp(
                 42px,
                 13vw,
-                65px
+                70px
             );
+
+        text-align: center;
     }
 
 
-    .music-header p {
-        font-size: 8px;
+    .music-portfolio-inner::before {
 
-        letter-spacing: .2em;
+        width:
+            min(70vw, 330px);
+
+        margin:
+            10px auto
+            25px;
+
+        flex-shrink: 0;
+    }
+
+
+    .music-portfolio-inner::after {
+
+        left: 50%;
+
+        top: 25%;
+
+        width: 65%;
+
+        transform:
+            translateX(-50%)
+            rotate(8deg);
+    }
+
+
+    .music-playlist {
+
+        width: 100%;
     }
 
 
     .music-track {
+
         min-height: 64px;
 
         padding:
@@ -6474,31 +6706,66 @@ body {
 
 
     .track-number {
-        width: 40px;
+
+        width: 42px;
+
+        font-size: 9px;
+    }
+
+
+    .track-info h3 {
 
         font-size: 10px;
     }
 
 
-    .track-info h3 {
-        font-size: 11px;
-    }
-
-
     .track-info span {
+
         font-size: 7px;
     }
 
 
     .track-play {
+
         width: 36px;
         height: 36px;
     }
 
 
     .music-now-playing {
+
+        display: block;
+
+        margin-top: 20px;
+
         padding:
-            16px 18px;
+            18px;
+    }
+
+
+    .fake-progress {
+
+        margin-top: 18px;
+    }
+
+
+    .music-time {
+
+        margin-top: 8px;
+    }
+
+
+    .music-enter-button {
+
+        position: relative;
+
+        right: auto;
+
+        bottom: auto;
+
+        align-self: center;
+
+        margin-top: 20px;
     }
 
 }
