@@ -1430,6 +1430,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 });
+   /* =========================================================
+   MUSIC PORTFOLIO → MAIN WEBSITE
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const musicPortfolio =
+        document.getElementById("musicPortfolio");
+
+    const enterMainWebsite =
+        document.getElementById("enterMainWebsite");
+
+    if (!musicPortfolio || !enterMainWebsite) {
+        console.error(
+            "❌ Music Portfolio atau tombol LANJUT KE WEBSITE tidak ditemukan."
+        );
+        return;
+    }
+
+    enterMainWebsite.addEventListener("click", () => {
+
+        console.log(
+            "🟢 Tombol LANJUT KE WEBSITE diklik."
+        );
+
+        musicPortfolio.classList.add("music-hide");
+
+        // Kembalikan scroll website
+        document.body.style.overflow = "";
+
+    });
+
+});
     /* =================================================
        END OF DOMCONTENTLOADED
     ================================================= */
